@@ -1,0 +1,16 @@
+{
+    "name": "sophada/s-payway-php-sdk",
+    "description": "PHP SDK for S_PayWay Payment Gateway",
+    "type": "library",
+    "require": {
+        "php": ">=7.2.0",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "S_PayWay\\": "src/S_PayWay/"
+        }
+    },
+    "license": "MIT"
+}
