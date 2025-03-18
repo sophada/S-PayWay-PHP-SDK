@@ -1,22 +1,13 @@
 {
     "name": "sophada/s-payway-php-sdk",
-    "description": "S-PayWay PHP SDK for integrating payments",
+    "description": "S-PayWay PHP SDK",
     "type": "library",
-    "require": {
-        "php": ">=7.4"
-    },
     "autoload": {
         "psr-4": {
             "SPayWay\\": "src/"
         }
     },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Sophada",
-            "email": "your-email@example.com"
-        }
-    ],
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    "require": {
+        "php": ">=7.4"
+    }
 }
