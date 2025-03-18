@@ -1,13 +1,23 @@
 {
-    "name": "sophada/s-payway-php-sdk",
-    "description": "S-PayWay PHP SDK",
-    "type": "library",
+    "name": "your/project-name",
+    "description": "S-PayWay | The Secure Way to Digital Payments",
+    "type": "project",
+    "require": {
+        "sophada/s-payway-php-sdk": "dev-main"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "SPayWay\\": "src/"
+            "S-PayWay\\": "src/"
         }
     },
-    "require": {
-        "php": ">=7.4"
+    "config": {
+        "preferred-install": "dist"
+    },
+    "scripts": {
+        "post-update-cmd": [
+            "@php artisan optimize"
+        ]
     }
 }
