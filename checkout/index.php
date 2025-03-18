@@ -34,7 +34,7 @@ function processPayment(){
             'fullname'  => 'John Kh',
             'email'     => 'john.kh@example.com'
         ],
-        'paid_url'      => 'https://example.com/payment/verify',
+        'paid_url'      => 'https://example.com/payment/success',
         'cancel_url'    => 'https://example.com/payment/cancel',
         'fees'          => [
             'name'      => 'Shipping Fee', 
@@ -46,7 +46,7 @@ function processPayment(){
             'type'      => 'percentage',
             'value'     => 0        // 10% VAT
         ],
-        "config"        => [
+        'config'        => [
             "timeout"   => 2,       // Invoice timeout: between 1 and 24 hours. Set to [X] hours (Default: 2 hours).
             'version'   => '2.0.0', // API version
         ],
