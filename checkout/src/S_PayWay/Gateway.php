@@ -5,7 +5,7 @@ class Gateway
 {
     const API_BASE_URL = 'https://api.s-payway.com';
     const TIMESTAMP_ENDPOINT = '/timestamp/';
-    const INVOICE_ENDPOINT = '/v2/invoices98/';
+    const INVOICE_ENDPOINT = '/v2/invoices/';
     
     private $merchantId;
     private $privateKey;
