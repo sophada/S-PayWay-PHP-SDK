@@ -1,5 +1,5 @@
 {
-    "name": "your/project-name",
+    "name": "sophada/s-payway-php-sdk",
     "description": "S-PayWay | The Secure Way to Digital Payments",
     "type": "project",
     "require": {
