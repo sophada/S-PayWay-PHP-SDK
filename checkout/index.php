@@ -48,7 +48,7 @@ function processPayment(){
         ],
         "config"        => [
             "timeout"   => 2,       // Invoice timeout: between 1 and 24 hours. Set to [X] hours (Default: 2 hours).
-            "version"   => "2.0.0", // API version
+            'version'   => '2.0.0', // API version
         ],
     ];
     
