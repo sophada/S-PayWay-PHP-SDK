@@ -23,7 +23,7 @@ A lightweight, framework-agnostic PHP client for the S_PayWay payment gateway AP
 ### Via Composer (Recommended)
 
 ```bash
-composer require your-vendor/s-payway-php
+composer require sophada/S-PayWay_PHP-SDK
 ```
 
 ### Manual Installation
