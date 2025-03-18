@@ -20,13 +20,6 @@ A lightweight, framework-agnostic PHP client for the S_PayWay payment gateway AP
 
 ## Installation
 
-### Via Composer (Recommended)
-
-```bash
-composer require sophada/s-payway-php-sdk
-```
-
-### Manual Installation
 
 1. Download the latest release from GitHub
 2. Include the Gateway class in your project:
@@ -44,8 +37,8 @@ use S_PayWay\Gateway;
 // Initialize the gateway with your credentials
 $gateway = new Gateway(
     'your_merchant_id',
+    'your_api_key',
     'your_private_key',
-    'your_api_key'
 );
 
 // Set up your payment parameters
@@ -114,8 +107,8 @@ public function checkout(Request $request)
 {
     $gateway = new \S_PayWay\Gateway(
         config('services.s_payway.merchant_id'),
-        config('services.s_payway.private_key'),
         config('services.s_payway.api_key')
+        config('services.s_payway.private_key'),
     );
     
     $params = [
@@ -145,8 +138,8 @@ function process_s_payway_payment() {
     
     $gateway = new \S_PayWay\Gateway(
         get_option('s_payway_merchant_id'),
-        get_option('s_payway_private_key'),
         get_option('s_payway_api_key')
+        get_option('s_payway_private_key'),
     );
     
     // Rest of the code...
