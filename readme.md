@@ -1,6 +1,6 @@
-# S_PayWay PHP Gateway
+# S_PayWay API Integration
 
-A lightweight, framework-agnostic PHP client for the S_PayWay payment gateway API. This library makes it easy to integrate S_PayWay payments into any PHP application.
+A lightweight, framework-agnostic PHP client for the S-PayWay payment gateway API. This library makes it easy to integrate S-PayWay payments into any PHP application.
 
 ## Features
 
