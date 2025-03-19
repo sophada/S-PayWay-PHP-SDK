@@ -4,7 +4,7 @@
  * 
  * This file should be placed on your server to receive and verify payment notifications
  * Never make this URL of this path public.
- * from S_PayWay. Set this URL in your merchant dashboard -> API Management as your callback URL.
+ * on the S-PayWay merchant panel. Set this URL in your merchant dashboard -> API Management as your callback URL.
  * 
  * URL Example: https://yourwebsite.com/callbacks/s_payway_callback.php
  */
