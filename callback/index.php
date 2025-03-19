@@ -37,6 +37,19 @@ if (json_last_error() !== JSON_ERROR_NONE || !isset($callbackData['event']) || !
 }
 
 switch ($callbackData['event']) {
+    case 'test.connection':
+        // Don't change this test connection's response. If verification fails, you won't be able to enable the API.
+        http_response_code(200);
+        echo json_encode([
+            'data' => [
+                'ip' => getServerIP(),
+                'ipv6' => getServerIPv6()
+            ],
+            'message' => 'Credentials verified successfully. Please add your Hosting IP address to the API Security Guard page.',
+            'status' => 'success'
+        ]);
+        exit();
+        break;
     case 'payment.completed':
         // Payment was successful
         $paymentData = $callbackData['data'];
@@ -45,7 +58,7 @@ switch ($callbackData['event']) {
         $amount = $paymentData['payment']['value'] ?? 0;
         $currency = $paymentData['payment']['currency'] ?? '';
         // TODO: Update your database to mark the order as paid
-        // updateOrderStatus($referenceId, 'paid');
+        // updateOrderStatus($referenceId, 'paid'); || You can also use the Invoice ID or Invoice hash to verify if they were saved when the request for the checkout link was made.
         
         // Log successful payment
         file_put_contents('callback_log.txt', date('Y-m-d H:i:s') . " - Payment completed for order: $referenceId, Amount: $amount $currency\n", FILE_APPEND);
@@ -72,3 +85,6 @@ function updateOrderStatus($referenceId, $status, $reason = '') {
     // $stmt = $db->prepare("UPDATE orders SET status = ?, status_reason = ?, updated_at = NOW() WHERE reference_id = ?");
     // $stmt->execute([$status, $reason, $referenceId]);
 }
+function getServerIP() { $ch = curl_init('https://api.ipify.org?format=json'); curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); $json = json_decode(curl_exec($ch)); curl_close($ch); return isset($json->ip) ? $json->ip : '0'; }
+
+function getServerIPv6() { $ch = curl_init('https://api64.ipify.org?format=json'); curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); $json = json_decode(curl_exec($ch)); curl_close($ch); return isset($json->ip) ? $json->ip : '0'; }
