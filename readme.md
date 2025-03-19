@@ -64,7 +64,7 @@ $params = [
 ];
 
 // Process the payment
-$result = $gateway->processPayment($params);
+$result = $gateway->createINV($params);
 
 // Check the result
 if ($result['success']) {
@@ -119,7 +119,7 @@ public function checkout(Request $request)
         // Rest of the params...
     ];
     
-    $result = $gateway->processPayment($params);
+    $result = $gateway->createINV($params);
     
     if ($result['success']) {
         return redirect($result['payment_url']);
