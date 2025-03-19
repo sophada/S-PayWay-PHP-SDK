@@ -9,7 +9,7 @@
  * URL Example: https://yourwebsite.com/callbacks/s_payway_callback.php
  */
 
-// Replace with your S_PayWay merchant credentials
+// Replace with your S-PayWay merchant credentials
 define('MERCHANT_ID', 'your_merchant_id');
 define('PRIVATE_KEY', 'your_private_key'); // Keep this secure and never expose it
 
