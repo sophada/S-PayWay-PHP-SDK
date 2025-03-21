@@ -53,10 +53,17 @@ switch ($callbackData['event']) {
     case 'payment.completed':
         // Payment was successful
         $paymentData = $callbackData['data'];
-        $invoiceId = $paymentData['invoice_id'] ?? '';
-        $referenceId = $paymentData['reference_id'] ?? '';
+        $invoiceId = $paymentData['invoice_id'] ?? ' ';
+        $invoiceHash = $paymentData['invoice_hash'] ?? ' ';
+        $totalUSD = $paymentData['total_usd'] ?? 0;
+        $referenceId = $paymentData['goods']['reference_id'] ?? ' ';
+        $txnHash = $paymentData['payment']['hash'] ?? ' ';
         $amount = $paymentData['payment']['value'] ?? 0;
-        $currency = $paymentData['payment']['currency'] ?? '';
+        $currency = $paymentData['payment']['currency'] ?? ' ';
+        $paidMethod = $paymentData['payment']['method'] ?? ' ';
+        $paidCountry = $paymentData['payment']['country'] ?? ' ';
+        $paidIP = $paymentData['payment']['ip'] ?? ' ';
+        $paidTimestamp = $paymentData['payment']['timestamp'] ?? '883612800';
         // TODO: Update your database to mark the order as paid
         // updateOrderStatus($referenceId, 'paid'); || You can also use the Invoice ID or Invoice hash to verify if they were saved when the request for the checkout link was made.
         
