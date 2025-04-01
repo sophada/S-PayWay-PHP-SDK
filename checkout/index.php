@@ -6,7 +6,7 @@
  */
 
 define('MY_ACCESS_GRANTED', true) or defined('MY_ACCESS_GRANTED');
-require_once('../config.php'); // Please change this path to a different one
+require_once('../config.php'); // Please change this 'config.php' path to a different one
 
 require_once('src/S_PayWay/Gateway.php');
 use S_PayWay\Gateway;

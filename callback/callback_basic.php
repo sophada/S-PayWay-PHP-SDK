@@ -9,31 +9,37 @@
  * URL Example: https://yourwebsite.com/callbacks/s_payway_callback.php
  */
 
-// Replace with your S-PayWay merchant credentials
-define('MERCHANT_ID', 'your_merchant_id');
-define('PRIVATE_KEY', 'your_private_key'); // Keep this secure and never expose it
+ define('MY_ACCESS_GRANTED', true) or defined('MY_ACCESS_GRANTED');
+ require('../config.php'); // Please change this 'config.php' path to a different one
 
 $rawPostData = file_get_contents('php://input');
 
-// Log incoming callback (optional)
-file_put_contents('callback_log.txt', date('Y-m-d H:i:s') . " - Received callback\n", FILE_APPEND);
-
+// Log incoming callback
+if (defined('DEBUG') && DEBUG){
+    file_put_contents('callback_log.txt', date('Y-m-d H:i:s') . " - Received callback\n", FILE_APPEND);
+}
 $receivedSignature = $_SERVER['HTTP_S_PAYWAY_SIGNATURE'] ?? '';
 $receivedTimestamp = $_SERVER['HTTP_S_PAYWAY_TIMESTAMP'] ?? '';
 $expectedSignature = hash_hmac('sha256', $receivedTimestamp . ':' . $rawPostData, PRIVATE_KEY);
 if (!hash_equals($expectedSignature, $receivedSignature)) {
+    $errorMessage = "Invalid signature";
+    if (defined('DEBUG') && DEBUG){
+        file_put_contents('callback_log.txt', date('Y-m-d H:i:s') . " - $errorMessage\n", FILE_APPEND);
+    }
     http_response_code(401);
-    echo json_encode(['status' => 'error', 'message' => 'Invalid signature']);
-    file_put_contents('callback_log.txt', date('Y-m-d H:i:s') . " - Invalid signature\n", FILE_APPEND);
-    exit;
+    echo json_encode(['status' => 'error', 'message' => $errorMessage]);
+    exit();
 }
 
 $callbackData = json_decode($rawPostData, true);
 if (json_last_error() !== JSON_ERROR_NONE || !isset($callbackData['event']) || !isset($callbackData['data'])) {
+    $errorMessage = "Invalid callback data";
+    if (defined('DEBUG') && DEBUG){
+        file_put_contents('callback_log.txt', date('Y-m-d H:i:s') . " - $errorMessage\n", FILE_APPEND);
+    }
     http_response_code(400);
-    echo json_encode(['status' => 'error', 'message' => 'Invalid callback data']);
-    file_put_contents('callback_log.txt', date('Y-m-d H:i:s') . " - Invalid callback data\n", FILE_APPEND);
-    exit;
+    echo json_encode(['status' => 'error', 'message' => $errorMessage]);
+    exit();
 }
 
 switch ($callbackData['event']) {
@@ -69,7 +75,9 @@ switch ($callbackData['event']) {
         # updateOrderStatus($referenceId, 'paid'); // || You can also use the Invoice ID or Invoice hash to verify if they were saved when the request for the checkout link was made.
         
         // Log successful payment
-        file_put_contents('callback_log.txt', date('Y-m-d H:i:s') . " - Payment completed for order: $referenceId, Amount: $amount $currency\n", FILE_APPEND);
+        if (defined('DEBUG') && DEBUG){
+            file_put_contents('callback_log.txt', date('Y-m-d H:i:s') . " - Payment completed for order: $referenceId, Amount: $amount $currency\n", FILE_APPEND);
+        }
         break;
     default:
         // Unknown event type
