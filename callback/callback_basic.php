@@ -102,5 +102,4 @@ function updateOrderStatus($referenceId, $status, $reason = '') {
     # $stmt->execute([$status, $reason, $referenceId]);
 }
 function getServerIP() { $ch = curl_init('https://api.ipify.org?format=json'); curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); $json = json_decode(curl_exec($ch)); curl_close($ch); return isset($json->ip) ? $json->ip : '0'; }
-
 function getServerIPv6() { $ch = curl_init('https://api64.ipify.org?format=json'); curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); $json = json_decode(curl_exec($ch)); curl_close($ch); return isset($json->ip) ? $json->ip : '0'; }
