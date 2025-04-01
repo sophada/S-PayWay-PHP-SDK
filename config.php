@@ -10,4 +10,4 @@ define('API_KEY', 'your_api_key');
 define('PRIVATE_KEY', 'your_private_key');
 
 //Save the debug logs as callback_log.txt
-define('DEBUG', false); // Don't set to true when running the service as public
+define('DEBUG', false); // Don't set to true when running the service as public.
