@@ -9,8 +9,8 @@
  * URL Example: https://yourwebsite.com/callbacks/s_payway_callback.php
  */
 
-define("MY_ACCESS_GRANTED", true) or defined("MY_ACCESS_GRANTED");
-require '../config.php'; // Please change this path to a different one
+define('MY_ACCESS_GRANTED', true) or defined('MY_ACCESS_GRANTED');
+require('../config.php'); // Please change this path to a different one
 
 $rawPostData = file_get_contents('php://input');
 
@@ -29,7 +29,6 @@ if (!hash_equals($expectedSignature, $receivedSignature)) {
     }
     http_response_code(401);
     echo json_encode(['status' => 'error', 'message' => $errorMessage]);
-    
     exit();
 }
 
@@ -78,8 +77,7 @@ switch ($callbackData['event']) {
         $result = verifyWithSPayWay(
             MERCHANT_ID,
             $txnId,
-            $txnHash,
-            false
+            $txnHash
         );
         
         if ($result['status'] === 'error') {

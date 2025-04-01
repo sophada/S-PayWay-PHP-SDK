@@ -5,7 +5,7 @@
  * @version 2.0.0
  */
 
-define("MY_ACCESS_GRANTED", true) or defined("MY_ACCESS_GRANTED");
+define('MY_ACCESS_GRANTED', true) or defined('MY_ACCESS_GRANTED');
 require_once('../config.php'); // Please change this path to a different one
 
 require_once('src/S_PayWay/Gateway.php');
