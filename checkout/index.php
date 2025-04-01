@@ -1,19 +1,23 @@
 <?php
 /**
- * @product S-PayWay Gateway
+ * @package S-PayWay PHP SDK
  * @author S-SERVER Pvt Ltd.
  * @version 2.0.0
  */
-require_once 'src/S_PayWay/Gateway.php';
+
+define("MY_ACCESS_GRANTED", true) or defined("MY_ACCESS_GRANTED");
+require_once('../config.php'); // Please change this path to a different one
+
+require_once('src/S_PayWay/Gateway.php');
 use S_PayWay\Gateway;
 function processPayment(){
     $gateway = new Gateway(
-        'your_merchant_id', 
-        'your_api_key',
-        'your_private_key',
+        MERCHANT_ID, 
+        API_KEY,
+        PRIVATE_KEY,
         [
             'timeout' => 45,    // API request timeout in seconds
-            'debug' => true,    // Enable debug output
+            'debug' => DEBUG,
             'timestampOffsets' => [0, 500, -500]    // Custom timestamp offsets
         ]
     );
@@ -23,7 +27,7 @@ function processPayment(){
     
     $params = [
         'goods'             => [
-            'reference_id'  => 'ORD-' . uniqid(),
+            'reference_id'  => 'ORD_' . bin2hex(random_bytes(3)),
             'name'          => 'Mobile Legends Bang Bang Diamonds',
             'description'   => 'Instant Recharge',
             'quantity'      => (float) 25,
