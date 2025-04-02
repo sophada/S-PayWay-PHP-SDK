@@ -10,7 +10,7 @@
  */
 
  define('MY_ACCESS_GRANTED', true) or defined('MY_ACCESS_GRANTED');
- require('../config.php'); // Please change this 'config.php' path to a different one
+ require_once('../config.php'); // Please change this 'config.php' path to a different one
 
 $rawPostData = file_get_contents('php://input');
 
